@@ -3,6 +3,7 @@
 
 # define common environment variables
 source ./common.sh
+echo ${JOB_NAME} > ./latest_model_name.txt
 
 # for training locally
 #TRAIN_DATA="$(pwd)/data/adult.data.csv"
@@ -11,7 +12,6 @@ source ./common.sh
 # for training on cloud ml engine
 TRAIN_DATA="${BUCKET_NAME}/data/adult.data.csv"
 EVAL_DATA="${BUCKET_NAME}/data/adult.test.csv"
-JOB_NAME="${JOB_NAME}_$(date '+%d_%m_%Y_%H_%M_%S')"
 OUTPUT_PATH="$BUCKET_NAME/$JOB_NAME"
 
 gcloud ml-engine jobs submit training ${JOB_NAME} \
